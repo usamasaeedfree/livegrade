@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="revisit-after" content="7 day">
+    <meta name="language" content="en">
+    <meta name="author" content="usama s- ctool">
+    <meta name="publisher" content="usama s - ctool">
+    <meta name="googlebot" content="translate">
+    <meta name="rating" content="general">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="icon" type="image/png" href="/src/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/svg+xml" href="/src/favicon/favicon.svg">
+    <link rel="shortcut icon" href="/src/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/src/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/src/favicon/site.webmanifest">
+    <link rel="stylesheet" href="/src/style.css">
+
+
+    <title>LSAC GPA Calculator | Law School Admission</title>
+    <link rel="canonical" href="https://livegrade.site/">
+    <meta name="description" content="Use the LSAC GPA Calculator to estimate your admission eligibility and convert your grades according to the official law school conversion scale.">
+
+    <meta name="keywords" content="LSAC GPA calculator, calculate LSAC GPA, how does LSAC calculate GPA, how to calculate LSAC GPA, convert grade for law school, admission predictor, estimate law school score">
+
+    <style>
+        .tool {
+            border: 1px solid gainsboro;
+            overflow: hidden;
+            border-radius: 2px;
+            padding: 20px;
+        }
+
+        .tool-head {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .tool-head>button {
+            padding: 10px;
+            color: #fff;
+            background-color: orangered;
+            font-size: 16px;
+            border-radius: 2px;
+        }
+
+        .tool-input-section {
+            margin: 30px 0px;
+            gap: 30px;
+        }
+
+        .inputs-row {
+            padding: 20px;
+            background-color: rgb(245, 245, 245);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .input {
+            gap: 2px;
+            flex-grow: 1;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid gainsboro;
+            border-radius: 2px;
+            height: 35px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+
+        .inputs-row>img {
+            background-color: orangered;
+            padding: 5px;
+            border-radius: 2px;
+        }
+
+        .tool-result {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-result>.point {
+            font-size: 50px;
+        }
+
+        .tool-result>p {
+            width: min(250px, 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <a href="/" class="logo"><img src="/src/header-logo.png" alt="header logo" title="website logo"
+                    width="40">Live Grade</a>
+            <!-- <nav class="effect" id="navLinks">
+                <img src="/src/close-menu-button.svg" alt="" width="25" height="25" onclick="navBar()">
+                <a href="/">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+            <img src="/src/open-menu-button.svg" alt="" width="25" height="25" onclick="navBar()"> -->
+        </div>
+    </header>
+
+
+    <main>
+        <section class="clm" style="align-items: center; text-align: center; width: min(750px, 100%);">
+            <img src="/src/lsac-gpa-calculator.webp" alt="law school gpa estimator" width="110">
+            <h1>Law School Admission Council GPA Calculator</h1>
+            <!-- <p class="wraper">
+                <a href="#" class="clr">How It's Work</a> | <a href="#" class="clr">How To Use</a>
+            </p> -->
+            <p>Use the LSAC GPA calculator to convert your grades and estimate your grade point average. Plus, find out if you're eligible for law school. <a href="#gpatool" class="clr">Try Now!</a></p>
+            
+        </section>
+
+        <section class="tool clm" id="gpatool">
+            <div class="tool-head">
+                <button class="hover" onclick="add()" title="Click to add subject">+ Add Subject</button>
+            </div>
+            <hr>
+            <div class="tool-input-section clm" id="input_container">
+                <div class="inputs-row">
+                    <div class="input clm">
+                        <label for="name">Subject Name: </label>
+                        <input type="text" placeholder="e.g. Math" title="Subject (Optional)" id="name"
+                            onkeyup="calculate()">
+                    </div>
+
+                    <div class="input clm">
+                        <label for="letter">Grade Letter: </label>
+                        <select name="gradeLetters" id="letter" title="Select your Grade" onchange="calculate()">
+                        </select>
+                    </div>
+                    <div class="input clm">
+                        <label for="hour">Credit Hours: </label>
+                        <input type="number" placeholder="e.g. 5" title="Put Credit Hours Here" id="hour"
+                            onkeyup="calculate()">
+                    </div>
+                    <img src="/src/remove-button-icon.svg" alt="remove icon" title="Click to Delete" width="35"
+                        height="35" class="hover" onclick="remove(this)">
+                </div>
+            </div>
+
+            <hr>
+            <div class="tool-result clm">
+                <strong class="point clr" id="point">0.0</strong>
+                <span>Your <b class="clr">Grade Point</b> Average</span>
+                <p class="wraper"><span>Total Hours: </span> <span id="totalHours">0.00</span></p>
+                <b id="remarks">Performance</b>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <div class="footer clm">
+            <a href="/" class="logo"><img src="/src/footer-logo.png" alt="header logo" title="website logo"
+                    width="40">Live Grade</a>
+            <p>Convert your grade instantly with the Live Grade online tool, which is reliable, easy to use, and accurate.</p>
+
+            <!-- <div class="wraper">
+                <div class="site effect">
+                    <a href="/">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                </div>
+                <div class="social effect">
+                    <a href="#"><img src="/src/facebook-profile.svg" alt="facebook icon" width="25">vist facebook
+                        profile</a>
+                    <a href="#"><img src="/src/instagram-profile.svg" alt="instagrame icon" width="25">vist instagrame
+                        profile</a>
+                    <a href="#"><img src="/src/linkedin-profile.svg" alt="linkedin icon" width="25">vist my linkind
+                        profile</a>
+                </div>
+            </div> -->
+        </div>
+        <hr>
+        <small>&copy; 2025 Live Grade. All Rights Reserved.</small>
+    </footer>
+
+    <script>
+        function navBar() {
+            let nav_Bar = document.getElementById("navLinks");
+            nav_Bar.classList.toggle("show");
+        }
+
+        const grade_scale = [
+
+            { min: 98, max: 100, letter: "A+ (4.33)", point: 4.33, remark: "Excellent Score" },
+            { min: 93, max: 97.99, letter: "A (4.00)", point: 4.00, remark: "Outstanding Score" },
+            { min: 90, max: 92.99, letter: "A- (3.67)", point: 3.67, remark: "Very Strong Score" },
+
+            { min: 89.01, max: 89.99, letter: "AB (3.50)", point: 3.50, remark: "Above Average Performance" },
+
+            { min: 87, max: 89, letter: "B+ (3.33)", point: 3.33, remark: "Strong Performance" },
+            { min: 83, max: 86.99, letter: "B (3.00)", point: 3.00, remark: "Good Performance" },
+            { min: 80, max: 82.99, letter: "B- (2.67)", point: 2.67, remark: "Slightly Above Average" },
+
+            { min: 79.01, max: 79.99, letter: "BC (2.50)", point: 2.50, remark: "Above Average but Not High" },
+
+            { min: 77, max: 79, letter: "C+ (2.33)", point: 2.33, remark: "Satisfactory Performance" },
+            { min: 73, max: 76.99, letter: "C (2.00)", point: 2.00, remark: "Meets Basic Requirements" },
+            { min: 70, max: 72.99, letter: "C- (1.67)", point: 1.67, remark: "Below Average but Passing" },
+
+            { min: 69.01, max: 69.99, letter: "CD (1.50)", point: 1.50, remark: "Low Passing Grade" },
+
+            { min: 67, max: 69, letter: "D+ (1.33)", point: 1.33, remark: "Poor but Passing" },
+            { min: 63, max: 66.99, letter: "D (1.00)", point: 1.00, remark: "Marginally Passing" },
+            { min: 60, max: 62.99, letter: "D- (0.67)", point: 0.67, remark: "Minimum Passing Grade" },
+
+            { min: 59.01, max: 59.99, letter: "DE/DF (0.50)", point: 0.50, remark: "Very Low Performance" },
+
+            { min: 0, max: 59, letter: "E/F (0.00)", point: 0.00, remark: "Failing Grade" }
+
+        ];
+
+        function remove(row) {
+            row.closest(".inputs-row").remove();
+        }
+
+        function fetchOptions() {
+            let row = document.querySelectorAll(".inputs-row");
+            selector = row[row.length - 1]
+            for (let i = 0; i < grade_scale.length; i++) {
+                let option = document.createElement("option");
+                option.value = grade_scale[i].point;
+                option.innerText = grade_scale[i].letter;
+                selector.children[1].children[1].appendChild(option)
+            }
+        }
+        fetchOptions()
+        function add() {
+            let container = document.getElementById("input_container");
+            let row = document.createElement("div")
+            row.className = "inputs-row";
+            row.innerHTML = `<div class="input clm">
+                        <label for="name">Subject Name: </label>
+                        <input type="text" placeholder="e.g. Math" title="Subject (Optional)" id="name" onkeyup="calculate()">
+                    </div>
+                    
+                    <div class="input clm">
+                        <label for="letter">Grade Letter: </label>
+                        <select name="gradeLetters" id="letter" title="Select your Grade" onchange="calculate()">
+                        </select>
+                    </div>
+                    <div class="input clm">
+                        <label for="hour">Credit Hours: </label>
+                        <input type="number" placeholder="e.g. 5" title="Put Credit Hours Here" id="hour" onkeyup="calculate()">
+                    </div>
+                    <img src="/src/remove-button-icon.svg" alt="remove icon" title="Click to Delete" width="35" height="35" class="hover" onclick="remove(this)">`
+            container.appendChild(row);
+            fetchOptions();
+        }
+
+        function calculate() {
+            let totalhours = 0;
+            let totalpoints = 0;
+
+            let hour = document.querySelectorAll("#hour");
+            let grade = document.querySelectorAll("#letter");
+
+            for (let i = 0; i < hour.length; i++) {
+
+                if (!isNaN(parseFloat(hour[i].value))) {
+                    totalhours += parseFloat(hour[i].value)
+                    totalpoints += parseFloat(grade[i].value) * parseFloat(hour[i].value)
+                }
+                else {
+                    window.alert("Please Enter Cridt hour")
+                    hour[i].focus();
+                }
+            }
+
+            document.getElementById("point").innerText = (totalpoints / totalhours).toFixed(2);
+            document.getElementById("totalHours").innerText = totalhours.toFixed(2);
+            document.getElementById("remarks").innerText = getRemarkFromAnyPoint((totalpoints / totalhours).toFixed(2))
+        }
+
+        function getRemarkFromAnyPoint(inputPoint) {
+            let nearest = grade_scale.reduce((prev, curr) => {
+                return (Math.abs(curr.point - inputPoint) < Math.abs(prev.point - inputPoint))
+                    ? curr
+                    : prev;
+            });
+
+            return nearest.remark;
+        }
+    </script>
+</body>
+
+</html>
